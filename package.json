@@ -1,0 +1,22 @@
+{
+  "name": "clever-npm-publish-test",
+  "version": "1.0.0",
+  "description": "test publish from clever",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'no tests'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clever/npm-publish-test.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Clever Infra",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/Clever/npm-publish-test/issues"
+  },
+  "homepage": "https://github.com/Clever/npm-publish-test"
+}
