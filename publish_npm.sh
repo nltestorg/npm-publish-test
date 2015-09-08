@@ -5,6 +5,8 @@ npm config set strict-ssl true
 npm config set always-auth true
 
 cp package.json package.json.bkp
+git status
+git branch
 branch=`git branch | grep "*"`
 echo "branch is '${branch}'"
 if [ "${branch}" != "* master" ]
