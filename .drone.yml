@@ -1,4 +1,7 @@
 env:
+- npm_drone_email=$$npm_drone_email
+- npm_drone_username_token=$$npm_drone_username
+- npm_drone_password=$$npm_drone_password
 - npm_publish_token=$$npm_publish_token
 image: node:0.10.39
 publish:
