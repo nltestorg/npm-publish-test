@@ -1,6 +1,6 @@
 {
   "name": "clever-npm-publish-test2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "test publish from clever",
   "main": "index.js",
   "scripts": {

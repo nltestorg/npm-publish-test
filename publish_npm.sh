@@ -16,11 +16,9 @@ then
   exit
 fi
 
+npm install json
 echo "getting name"
-name=`json -f package.json name`
-echo "got ${name}, updating name"
-json -I -f package.json -e "name='@clever/${name}'"
-echo "updated name, updating registry"
-json -I -f package.json -e "publishConfig={registry:'https://registry.npmjs.org'}"
-npm publish
+name=`node node_modules/json/lib/json.js -f package.json name`
+echo "got ${name}, updating name, publishing package"
+node node_modules/json/lib/json.js -I -f package.json -e "name='@clever/${name}'" && node node_modules/json/lib/json.js -I -f package.json -e "publishConfig={registry:'https://registry.npmjs.org'}" && npm publish
 mv package.json.bkp package.json
