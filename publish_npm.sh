@@ -9,8 +9,8 @@ current_commit=`git log -1 HEAD --pretty=format:"%H"`
 master_commit=`git log -1 master --pretty=format:"%H"`
 git branch
 echo "current_commit is '${current_commit}'"
-echo "master_commit is '${current_branch}'"
-if [ "${current_commit}" != ${master_commit}]
+echo "master_commit is '${master_commit}'"
+if [ "${current_commit}" != ${master_commit} ]
 then
   echo "only works on master branch!"
   exit
