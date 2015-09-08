@@ -21,4 +21,5 @@ echo "getting name"
 name=`node node_modules/json/lib/json.js -f package.json name`
 echo "got ${name}, updating name, publishing package"
 node node_modules/json/lib/json.js -I -f package.json -e "name='@clever/${name}'" && node node_modules/json/lib/json.js -I -f package.json -e "publishConfig={registry:'https://registry.npmjs.org'}" && npm publish
+npm uninstall json
 mv package.json.bkp package.json
