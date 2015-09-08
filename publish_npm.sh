@@ -8,7 +8,7 @@ npm config set always-auth true
 
 cat ~/.npmrc
 npm config list
-echo "npm_auth: ${npm_publish_user}"
+readline -f ~/.npmrc
 
 cp package.json package.json.bkp
 current_commit=`git log -1 HEAD --pretty=format:"%H"`
