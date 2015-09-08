@@ -2,8 +2,6 @@ set -eu
 
 npm cache clean
 npm config set //registry.npmjs.org/:_authToken "${npm_publish_token}"
-auth=`echo -n ${npmdeployusername}:${npmdeploypassword} | base64`
-npm config set _auth $auth
 npm config set registry https://registry.npmjs.org
 npm config set strict-ssl true
 npm config set always-auth true
