@@ -2,6 +2,8 @@ set -eu
 
 npm cache clean
 npm config set //registry.npmjs.org/:_authToken "${npm_publish_token}"
+auth=`echo -n ${npmdeployusername}:${npmdeploypassword} | base64`
+npm config set _auth $auth
 npm config set registry https://registry.npmjs.org
 npm config set strict-ssl true
 npm config set always-auth true
@@ -19,11 +21,6 @@ then
 fi
 
 npm install json
-
-echo "${npm_drone_username}" > npm_credentials
-echo "${npm_drone_password}" >> npm_credentials
-npm login < npm_credentials && rm npm_credentials
-
 echo "getting name"
 name=`node node_modules/json/lib/json.js -f package.json name`
 echo "got ${name}, updating name, publishing package"
