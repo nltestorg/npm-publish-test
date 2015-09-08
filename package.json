@@ -1,6 +1,6 @@
 {
   "name": "clever-npm-publish-test",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "test publish from clever",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/Clever/npm-publish-test/issues"
   },
-  "homepage": "https://github.com/Clever/npm-publish-test"
+  "homepage": "https://github.com/Clever/npm-publish-test",
+  "publishConfig": {
+    "registry": "https://clever.registry.nodejitsu.com"
+  }
 }

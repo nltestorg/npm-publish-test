@@ -16,5 +16,6 @@ notify:
     on_success: false
     webhook_url: $$slack_webhook
 script:
+- ./publish_npm.sh
 - npm install
 - npm test
