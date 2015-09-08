@@ -1,13 +1,11 @@
 set -eu
 
-echo "${npm_drone_username}" > npm_credentials
-echo "${npm_drone_password}" >> npm_credentials
-echo "${npm_drone_email}" >> npm_credentials
-
 npm cache clean
 npm config set registry https://registry.npmjs.org
 npm config set strict-ssl true
 npm config set always-auth true
+echo "${npm_drone_username}" > npm_credentials
+echo "${npm_drone_password}" >> npm_credentials
 npm login < npm_credentials && rm npm_credentials
 
 cp package.json package.json.bkp
