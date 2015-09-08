@@ -1,14 +1,10 @@
 set -eu
 
 npm cache clean
-echo "//registry.npmjs.org/:_authToken=${npm_publish_token}" > ~/.npmrc
+npm config set //registry.npmjs.org/:_authToken "${npm_publish_token}"
 npm config set registry https://registry.npmjs.org
 npm config set strict-ssl true
 npm config set always-auth true
-
-cat ~/.npmrc
-npm config list
-readlink -f ~/.npmrc
 
 cp package.json package.json.bkp
 current_commit=`git log -1 HEAD --pretty=format:"%H"`
