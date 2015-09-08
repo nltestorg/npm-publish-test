@@ -1,5 +1,11 @@
 set -eu
 
+npm cache clean
+npm config set //registry.npmjs.org/:_authToken "${npm_publish_token}"
+npm config set registry https://registry.npmjs.org
+npm config set strict-ssl true
+npm config set always-auth true
+
 cp package.json package.json.bkp
 current_commit=`git log -1 HEAD --pretty=format:"%H"`
 master_commit=`git log -1 master --pretty=format:"%H"`
@@ -14,10 +20,6 @@ fi
 
 npm install json
 
-npm cache clean
-npm config set registry https://registry.npmjs.org
-npm config set strict-ssl true
-npm config set always-auth true
 echo "${npm_drone_username}" > npm_credentials
 echo "${npm_drone_password}" >> npm_credentials
 npm login < npm_credentials && rm npm_credentials
