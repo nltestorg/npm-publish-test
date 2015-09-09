@@ -1,14 +1,12 @@
 env:
 - npm_drone_email=$$npm_drone_email
-- npm_drone_username_token=$$npm_drone_username
 - npm_drone_password=$$npm_drone_password
-- npm_publish_token=$$npm_publish_token
+- npm_drone_username=$$npm_drone_username
 image: node:0.10.39
 publish:
   npm:
     email: $$npm_drone_email
     password: $$npm_drone_password
-    registry: https://clever.registry.nodejitsu.com
     username: $$npm_drone_username
     when:
       branch: master
@@ -22,6 +20,6 @@ notify:
     on_success: false
     webhook_url: $$slack_webhook
 script:
-- ./publish_npm.sh
+- ./publish_nodejitsu.sh
 - npm install
 - npm test
