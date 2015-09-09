@@ -18,7 +18,7 @@ npm config set registry https://clever.registry.nodejitsu.com/
 npm config set strict-ssl true
 npm config set always-auth true
 
-auth=`echo -n ${npmdeploypassword} | base64`
+auth=`echo -n ${npm_drone_password} | base64`
 npm config set //clever.registry.nodejitsu.com/:_password "${auth}"
 npm config set //clever.registry.nodejitsu.com/:username "${npm_drone_username}"
 npm config set //clever.registry.nodejitsu.com/:email "${npm_drone_email}"
