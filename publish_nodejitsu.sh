@@ -1,7 +1,8 @@
 #set -eu
 
+npm install json
 cp package.json package.json.bkp
-cp ~/.npmrc ~/.npmrc.bkp
+mv ~/.npmrc ~/.npmrc.bkp
 
 npm cache clean
 npm config set registry https://clever.registry.nodejitsu.com/
@@ -21,7 +22,6 @@ then
   exit
 fi
 
-npm install json
 echo "getting name"
 name=`node node_modules/json/lib/json.js -f package.json name`
 echo "got ${name}, updating name, publishing package"
@@ -34,6 +34,6 @@ fi
 node node_modules/json/lib/json.js -I -f package.json -e "this.publishConfig={registry:'https://clever.registry.nodejitsu.com'}"
 npm publish
 
-npm uninstall json
 mv package.json.bkp package.json
 mv ~/.npmrc.bkp ~/.npmrc
+npm uninstall json
