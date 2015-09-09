@@ -18,11 +18,10 @@ npm config set registry https://clever.registry.nodejitsu.com/
 npm config set strict-ssl true
 npm config set always-auth true
 
-echo ${npm_drone_username} > nodejitsu_credentials
-echo ${npm_drone_password} >> nodejitsu_credentials
-echo ${npm_drone_email} >> nodejitsu_credentials
-npm login < nodejitsu_credentials
-rm nodejitsu_credentials
+npm config set //clever.registry.nodejitsu.com/:_password "${npm_drone_password}"
+npm config set //clever.registry.nodejitsu.com/:username "${npm_drone_username}"
+npm config set //clever.registry.nodejitsu.com/:email "${npm_drone_email}"
+npm config set //clever.registry.nodejitsu.com/:always-auth true
 
 echo "getting name"
 name=`node node_modules/json/lib/json.js -f package.json name`
