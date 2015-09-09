@@ -1,15 +1,18 @@
 #set -eu
 
+npm cache clean
 npm install json
 cp package.json package.json.bkp
-mv ~/.npmrc ~/.npmrc.bkp
 
-npm cache clean
 npm config set registry https://clever.registry.nodejitsu.com/
 npm config set strict-ssl true
 npm config set always-auth true
-auth=`echo -n ${npm_drone_username}:${npm_drone_password} | base64`
-npm config set _auth $auth
+
+echo ${npm_drone_username} > nodejitsu_credentials
+echo ${npm_drone_password} >> nodejitsu_credentials
+echo ${npm_drone_email} >> nodejitsu_credentials
+npm login < nodejitsu_credentials
+rm nodejitsu_credentials
 
 current_commit=`git log -1 HEAD --pretty=format:"%H"`
 master_commit=`git log -1 master --pretty=format:"%H"`
@@ -31,9 +34,11 @@ then
   echo "setting package name to ${package_name}"
   node node_modules/json/lib/json.js -I -f package.json -e "this.name='${package_name}'"
 fi
+echo "setting registry"
 node node_modules/json/lib/json.js -I -f package.json -e "this.publishConfig={registry:'https://clever.registry.nodejitsu.com'}"
+echo "publishing"
 npm publish
 
 mv package.json.bkp package.json
-mv ~/.npmrc.bkp ~/.npmrc
+rm ~/.npmrc
 npm uninstall json
