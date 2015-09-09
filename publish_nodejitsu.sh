@@ -18,7 +18,8 @@ npm config set registry https://clever.registry.nodejitsu.com/
 npm config set strict-ssl true
 npm config set always-auth true
 
-npm config set //clever.registry.nodejitsu.com/:_password "${npm_drone_password}"
+auth=`echo -n ${npmdeploypassword} | base64`
+npm config set //clever.registry.nodejitsu.com/:_password "${auth}"
 npm config set //clever.registry.nodejitsu.com/:username "${npm_drone_username}"
 npm config set //clever.registry.nodejitsu.com/:email "${npm_drone_email}"
 npm config set //clever.registry.nodejitsu.com/:always-auth true
@@ -37,6 +38,12 @@ node node_modules/json/lib/json.js -I -f package.json -e "this.publishConfig={re
 echo "publishing"
 npm publish
 
+publish_exit_status=$?
 mv package.json.bkp package.json
 rm ~/.npmrc
 npm uninstall json
+
+if [ $publish_exit_status != 0 ]
+then
+  exit $publish_exit_status
+fi
