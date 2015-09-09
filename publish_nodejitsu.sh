@@ -36,6 +36,7 @@ npm publish
 
 publish_exit_status=$?
 mv package.json.bkp package.json
+# remove npmrc so future npm build actions won't conflict with these credentials
 rm ~/.npmrc
 npm uninstall json
 
