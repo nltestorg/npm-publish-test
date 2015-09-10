@@ -21,7 +21,7 @@ notify:
     on_success: false
     webhook_url: $$slack_webhook
 script:
-- nvm install 0.10.39
+- nvm install 0.10.29
 - npm install npm@2.7.0 -g
 - ./publish_nodejitsu.sh
 - npm install
