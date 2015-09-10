@@ -1,6 +1,6 @@
 {
   "name": "@clever/clever-npm-publish-test3",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "test publish from clever",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,5 @@
   "homepage": "https://github.com/Clever/npm-publish-test",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  },
-  "dependencies": {
-    "user-service-interface": "^1.0.0"
   }
 }
