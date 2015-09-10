@@ -2,7 +2,7 @@ env:
 - npm_drone_email=$$npm_drone_email
 - npm_drone_password=$$npm_drone_password
 - npm_drone_username=$$npm_drone_username
-image: node:0.10.39
+image: node:0.10
 publish:
   npm:
     email: $$npm_drone_email
@@ -21,7 +21,7 @@ notify:
     on_success: false
     webhook_url: $$slack_webhook
 script:
-- nvm install 0.10.29
+- nvm install 0.10.39
 - npm install npm@2.7.0 -g
 - ./publish_nodejitsu.sh
 - npm install
