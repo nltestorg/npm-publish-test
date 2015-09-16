@@ -3,6 +3,9 @@
   "version": "1.0.26",
   "description": "test publish from clever",
   "main": "index.js",
+  "dependencies": {
+      "async": "~0.1.22"
+  },
   "scripts": {
     "test": "echo 'no tests'"
   },
