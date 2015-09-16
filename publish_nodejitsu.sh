@@ -8,7 +8,7 @@ fi
 
 npm cache clean
 npm install json
-cp package.json package.json.bkp
+cp $1/package.json $1/package.json.bkp
 
 npm config set registry https://clever.registry.nodejitsu.com/
 npm config set strict-ssl true
@@ -21,21 +21,21 @@ npm config set //clever.registry.nodejitsu.com/:email "${npm_drone_email}"
 npm config set //clever.registry.nodejitsu.com/:always-auth true
 
 #echo "getting name"
-name=`node node_modules/json/lib/json.js -f package.json name`
+name=`node node_modules/json/lib/json.js -f $1/package.json name`
 #echo "got ${name}, updating name, publishing package"
 if [[ $name == "@clever/"* ]]
 then
   package_name=${name#$"@clever/"}
   #echo "setting package name to ${package_name}"
-  node node_modules/json/lib/json.js -I -f package.json -e "this.name='${package_name}'"
+  node node_modules/json/lib/json.js -I -f $1/package.json -e "this.name='${package_name}'"
 fi
 #echo "setting registry"
-node node_modules/json/lib/json.js -I -f package.json -e "this.publishConfig={registry:'https://clever.registry.nodejitsu.com'}"
+node node_modules/json/lib/json.js -I -f $1/package.json -e "this.publishConfig={registry:'https://clever.registry.nodejitsu.com'}"
 #echo "publishing"
-npm publish
+npm publish $1
 
 publish_exit_status=$?
-mv package.json.bkp package.json
+mv $1/package.json.bkp $1/package.json
 # remove npmrc so future npm build actions won't conflict with these credentials
 rm `npm config get userconfig`
 npm uninstall json

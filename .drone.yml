@@ -20,6 +20,7 @@ notify:
 script:
 - nvm install 0.10.29
 - npm install npm@2.7.0 -g
-- ./publish_nodejitsu.sh
 - npm install
 - npm test
+- ./setup_docker.sh
+- ./publish_nodejitsu.sh .

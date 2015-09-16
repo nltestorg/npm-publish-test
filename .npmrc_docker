@@ -1,0 +1,6 @@
+ca = null
+//registry.npmjs.org/:_authToken=${npm_auth_token}
+_auth = ${NODEJITSU_AUTH}
+registry = https://clever.registry.nodejitsu.com/
+always-auth = true
+strict-ssl = false
